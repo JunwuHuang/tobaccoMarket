@@ -20,7 +20,9 @@
 10. 删除烟草行情数据
 
 #### 数据说明
+
 tobaccoMarket
+
 | _id | name | slug | img | createTime | boxTradePrice | boxRetailPrice | bulkTradePrice | bulkRetailPrice | updateTime | isDeleted |
 | - | :-: | -: | -: | -: | -: | -: | -: | -: | -: | -: | 
 | XBoLt4nnuWjciueC | 中华| 软中 | /path/img.jpg | Wed Dec 19 2018 17:15:34 GMT+0800 (中国标准时间) | 670 | 680 | 68 | 70 | Wed Dec 19 2018 17:15:45 GMT+0800 (中国标准时间) | false |
@@ -39,8 +41,9 @@ isDeleted: 是否已删除(bool)
 ```
 
 marketTable
+
 | _id | name | createTime | tobaccoData | updateTime | isDeleted |
-| - | :-: | -: | -: | -: | -: | -: | -: | -: | -: | -: | 
+| - | :-: | -: | -: | -: | -: |
 | XBoOjXkPDdDCJ2lw | 中华| Wed Dec 19 2018 17:15:34 GMT+0800 (中国标准时间) | [{"remark":"后天到货","stocks":3,"tobaccoId":"XBoLt4nnuWjciueC"}] | Wed Dec 19 2018 17:15:45 GMT+0800 (中国标准时间) | false |
 ```
 _id: 行情表格id(string)
