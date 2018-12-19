@@ -28,12 +28,24 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
 					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide"
+					"pathName": "pages/databaseGuide/databaseGuide",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "tables",
+					"pathName": "pages/tables/tables",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "tobacco",
+					"pathName": "pages/tobacco/tobacco"
 				}
 			]
 		}

@@ -26,7 +26,7 @@
 #main-table .td {
 	border-left: 2rpx solid #9a9a9a;
 	padding: 0 8rpx;
-	width: 120rpx;
+	width: 200rpx;
 	height: 100%;
 	display: flex;
 	justify-content: space-around;
@@ -37,6 +37,9 @@
 	border-left: unset;
 	flex: 1;
 }
-#main-table .td.operate {
-	
+#main-table .td.operate>button {
+	font-size: 24rpx;
+	height: 80%;
+	padding-left: 20rpx;
+	padding-right: 20rpx;
 }

@@ -1,18 +1,38 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib"
-  ],
-  "window": {
-    "backgroundColor": "#F6F6F6",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
-    "navigationBarTextStyle": "black"
-  }
+	"pages": [
+		"pages/index/index",
+		"pages/tables/tables",
+		"pages/tobacco/tobacco",
+		"pages/addProduct/addProduct"
+	],
+	"window": {
+		"backgroundColor": "#fff",
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#fff",
+		"navigationBarTitleText": "死鸡咯来",
+		"navigationBarTextStyle": "black"
+	},
+	"tabBar": {
+		"backgroundColor": "#fff",
+		"list": [
+			{
+				"iconPath": "assets/icon/home.png",
+				"selectedIconPath": "assets/icon/home-fill.png",
+				"pagePath": "pages/index/index",
+				"text": "首页"
+			},
+			{
+				"iconPath": "assets/icon/line chart.png",
+				"selectedIconPath": "assets/icon/area chart.png",
+				"pagePath": "pages/tables/tables",
+				"text": "表格"
+			},
+			{
+				"iconPath": "assets/icon/database.png",
+				"selectedIconPath": "assets/icon/database-fill.png",
+				"pagePath": "pages/tobacco/tobacco",
+				"text": "数据"
+			}
+		]
+	}
 }

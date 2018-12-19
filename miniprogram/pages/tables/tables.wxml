@@ -1,0 +1,21 @@
+<view>
+    <view id='btn-addTable'>
+        <button>新的行情表</button>
+    </view>
+    <view id='main-table'>
+        <view class='caption'>行情表记录</view>
+        <view class='tr'>
+            <view class='th'>行情表</view>
+            <view class='th'>最近修改于</view>
+            <view class='th'>操作</view>
+        </view>
+        <view class='tr'>
+            <view class='td'>10月20日</view>
+            <view class='td'>10/20 22:00</view>
+            <view class='td operate'>
+                <button size='mini'>修改</button>
+                <button size='mini' type='warn'>删除</button>
+            </view>
+        </view>
+    </view>
+</view>

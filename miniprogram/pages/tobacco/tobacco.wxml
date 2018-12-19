@@ -1,0 +1,21 @@
+<view>
+    <view id='btn-addTable'>
+        <button bindtap='btn_addProduct'>添加新的商品数据</button>
+    </view>
+    <view id='main-table'>
+        <view class='caption'>商品数据浏览</view>
+        <view class='tr'>
+            <view class='th'>包装上的名称</view>
+            <view class='th'>俗称</view>
+            <view class='th'>操作</view>
+        </view>
+        <view class='tr'>
+            <view class='td'>10月20日</view>
+            <view class='td'>10/20 22:00</view>
+            <view class='td operate'>
+                <button size='mini'>修改</button>
+                <button size='mini' type='warn'>删除</button>
+            </view>
+        </view>
+    </view>
+</view>

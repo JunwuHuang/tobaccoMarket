@@ -20,7 +20,7 @@
 9. 编辑烟草行情数据
 10. 删除烟草行情数据
 ### 界面
-1. tabbar(3个:首页;浏览行情表格列表;浏览所有烟草数据)
+1. tabbar(3个:首页;表格;数据)
 2. 首页:查看最新行情表格,新增表格按钮,编辑当前表格按钮
 3. 表格:浏览行情表格列表,每一个表格都有编辑与删除按钮,新增表格按钮
 4. 数据:浏览所有烟草数据,每一个数据都有编辑与删除按钮,新增数据按钮
@@ -44,19 +44,15 @@
 
 tobaccoMarket
 
-| _id | name | slug | img | createTime | boxTradePrice | boxRetailPrice | bulkTradePrice | bulkRetailPrice | updateTime | isDeleted |
-| - | :-: | -: | -: | -: | -: | -: | -: | -: | -: | -: | 
-| XBoLt4nnuWjciueC | 中华| 软中 | /path/img.jpg | Wed Dec 19 2018 17:15:34 GMT+0800 (中国标准时间) | 670 | 680 | 68 | 70 | Wed Dec 19 2018 17:15:45 GMT+0800 (中国标准时间) | false |
+| _id | name | slug | img | createTime | updateTime | isDeleted |
+| - | :-: | -: | -: | -: | -: | -: |
+| XBoLt4nnuWjciueC | 中华| 软中 | /path/img.jpg | Wed Dec 19 2018 17:15:34 GMT+0800 (中国标准时间) | Wed Dec 19 2018 17:15:45 GMT+0800 (中国标准时间) | false |
 ```
 _id: 烟草数据id(string)
 name: 包装上的名称(string)
 slug: 俗称(string)
 img: 图片路径(string)
 createTime: 烟草数据创建时间(date)
-boxTradePrice: 条装批发价格(number)
-boxRetailPrice: 条装零售价格(number)
-bulkTradePrice: 包装批发价格(number)
-bulkRetailPrice: 包装零售价格(number)
 updateTime: 烟草数据最新修改时间(date)
 isDeleted: 是否已删除(bool)
 ```
@@ -65,7 +61,7 @@ marketTable
 
 | _id | name | createTime | tobaccoData | updateTime | isDeleted |
 | - | :-: | -: | -: | -: | -: |
-| XBoOjXkPDdDCJ2lw | 中华| Wed Dec 19 2018 17:15:34 GMT+0800 (中国标准时间) | [{"remark":"后天到货","stocks":3,"tobaccoId":"XBoLt4nnuWjciueC"}] | Wed Dec 19 2018 17:15:45 GMT+0800 (中国标准时间) | false |
+| XBoOjXkPDdDCJ2lw | 中华| Wed Dec 19 2018 17:15:34 GMT+0800 (中国标准时间) | [{"stocks":{"$numberLong":"3"},"tobaccoId":"XBoLt4nnuWjciueC","remark":"后天到货","boxTradePrice":{"$numberLong":"670"},"boxRetailPrice":{"$numberLong":"680"},"bulkTradePrice":{"$numberLong":"68"},"bulkRetailPrice":{"$numberLong":"70"}}] | Wed Dec 19 2018 17:15:45 GMT+0800 (中国标准时间) | false |
 ```
 _id: 行情表格id(string)
 name: 行情表格的名称(string)
@@ -75,6 +71,10 @@ tobaccoData[0]: 行情表格数据(object)
 tobaccoData[0].tobaccoId: 行情表格数据的烟草数据id(string)
 tobaccoData[0].stocks: 行情表格数据的烟草库存,单位条装(number)
 tobaccoData[0].remark: 行情表格数据的烟草数据备注(string)
+tobaccoData[0].boxTradePrice: 条装批发价格(number)
+tobaccoData[0].boxRetailPrice: 条装零售价格(number)
+tobaccoData[0].bulkTradePrice: 包装批发价格(number)
+tobaccoData[0].bulkRetailPrice: 包装零售价格(number)
 updateTime: 行情表格最新修改时间(date)
 isDeleted: 是否已删除(bool)
 ```
