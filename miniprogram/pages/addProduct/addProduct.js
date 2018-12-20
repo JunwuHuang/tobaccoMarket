@@ -78,11 +78,11 @@ Page({
 		wx.cloud.uploadFile({
 			cloudPath: cloudPath,
 			filePath: this.data.tempImgPath
-		}).then(() => {
+		}).then(data => {
 			wx.cloud.callFunction({
 				name: 'addProduct',
 				data: {
-					img: cloudPath,
+					img: data.fileID,
 					name: this.data.productName,
 					slug: this.data.productSlug
 				}

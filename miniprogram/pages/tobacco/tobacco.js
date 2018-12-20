@@ -3,7 +3,7 @@ Page({
   data: {
     productList: []
   },
-  onLoad() {
+  onShow() {
     wx.cloud.callFunction({
       name: 'getProducts'
     }).then(res => {

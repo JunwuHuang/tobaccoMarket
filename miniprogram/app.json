@@ -4,7 +4,8 @@
 		"pages/tables/tables",
 		"pages/tobacco/tobacco",
 		"pages/addProduct/addProduct",
-		"pages/updateProduct/updateProduct"
+		"pages/updateProduct/updateProduct",
+		"pages/addTable/addTable"
 	],
 	"window": {
 		"backgroundColor": "#fff",
