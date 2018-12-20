@@ -9,12 +9,14 @@
             <view class='th'>俗称</view>
             <view class='th'>操作</view>
         </view>
-        <view class='tr'>
-            <view class='td'>10月20日</view>
-            <view class='td'>10/20 22:00</view>
+        <view class='tr' wx:for="{{productList}}" wx:key="item._id">
+            <view class='td'>{{item.name}}</view>
+            <view class='td'>{{item.slug}}</view>
             <view class='td operate'>
-                <button size='mini'>修改</button>
-                <button size='mini' type='warn'>删除</button>
+                <button size='mini' data-id="{{item._id}}" bindtap="btn_update">修改</button>
+                <button size='mini' type='warn' data-id="{{item._id}}" bindtap="btn_delete">
+                    删除
+                </button>
             </view>
         </view>
     </view>

@@ -3,7 +3,8 @@
 		"pages/index/index",
 		"pages/tables/tables",
 		"pages/tobacco/tobacco",
-		"pages/addProduct/addProduct"
+		"pages/addProduct/addProduct",
+		"pages/updateProduct/updateProduct"
 	],
 	"window": {
 		"backgroundColor": "#fff",

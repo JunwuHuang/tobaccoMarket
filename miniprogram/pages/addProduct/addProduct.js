@@ -1,66 +1,103 @@
 // pages/addProduct/addProduct.js
 Page({
-
-	/**
-	 * 页面的初始数据
-	 */
 	data: {
-
+		tempImgPath: '',
+		productName: '',
+		productSlug: ''
 	},
-
-	/**
-	 * 生命周期函数--监听页面加载
-	 */
-	onLoad: function (options) {
-
+	btn_uploadImg: function () {
+		wx.chooseImage({
+			count: 1,
+			sizeType: 'compressed',
+			success: (res) => {
+				this.setData({
+					tempImgPath: res.tempFilePaths[0]
+				})
+			}
+		})
 	},
-
-	/**
-	 * 生命周期函数--监听页面初次渲染完成
-	 */
-	onReady: function () {
-
+	image_onTap: function () {
+		if (!this.data.tempImgPath) {
+			wx.chooseImage({
+				count: 1,
+				sizeType: 'compressed',
+				success: (res) => {
+					this.setData({
+						tempImgPath: res.tempFilePaths[0]
+					})
+				}
+			})
+		} else {
+			wx.previewImage({
+				urls: [this.data.tempImgPath]
+			})
+		}
 	},
-
-	/**
-	 * 生命周期函数--监听页面显示
-	 */
-	onShow: function () {
-
+	input_name: function (e) {
+		this.setData({
+			productName: e.detail.value.replace(/\s+/g, '')
+		})
+		return e.detail.value.replace(/\s+/g, '')
 	},
-
-	/**
-	 * 生命周期函数--监听页面隐藏
-	 */
-	onHide: function () {
-
+	input_slug: function (e) {
+		this.setData({
+			productSlug: e.detail.value.replace(/\s+/g, '')
+		})
+		return e.detail.value.replace(/\s+/g, '')
 	},
-
-	/**
-	 * 生命周期函数--监听页面卸载
-	 */
-	onUnload: function () {
-
+	btn_cancel: function () {
+		wx.navigateBack({
+			delta: 1
+		})
 	},
-
-	/**
-	 * 页面相关事件处理函数--监听用户下拉动作
-	 */
-	onPullDownRefresh: function () {
-
-	},
-
-	/**
-	 * 页面上拉触底事件的处理函数
-	 */
-	onReachBottom: function () {
-
-	},
-
-	/**
-	 * 用户点击右上角分享
-	 */
-	onShareAppMessage: function () {
-
+	btn_submit: function () {
+		if (!this.data.tempImgPath) {
+			wx.showToast({
+				title: '请上传商品图片',
+				icon: 'none'
+			})
+			return
+		}
+		if (!this.data.productName) {
+			wx.showToast({
+				title: '请输入包装上的名称',
+				icon: ''
+			})
+			return
+		}
+		if (!this.data.productSlug) {
+			wx.showToast({
+				title: '请输入俗称',
+				icon: ''
+			})
+			return
+		}
+		let tempArray = this.data.tempImgPath.split('.')
+		let imgMime = tempArray[tempArray.length - 1]
+		let cloudPath = 'productImages/' + this.data.productSlug + '.' + imgMime
+		wx.cloud.uploadFile({
+			cloudPath: cloudPath,
+			filePath: this.data.tempImgPath
+		}).then(() => {
+			wx.cloud.callFunction({
+				name: 'addProduct',
+				data: {
+					img: cloudPath,
+					name: this.data.productName,
+					slug: this.data.productSlug
+				}
+			}).then(res => {
+				if (res.result.message) {
+					wx.showToast({
+						title: res.result.message,
+						icon: 'none'
+					})
+				} else {
+					wx.switchTab({
+						url: '/pages/tobacco/tobacco'
+					})
+				}
+			})
+		})
 	}
 })

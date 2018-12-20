@@ -1,3 +1,39 @@
 <view>
-	新增商品
+	<view id="image-wrap">
+		<view class="image_preview" bindtap="image_onTap">
+			<image src="{{tempImgPath}}" />
+		</view>
+		<button id="btn-uploadImg" bindtap="btn_uploadImg">上传图片</button>
+	</view>
+	<form id="main-form">
+		<label class="label_name">
+			<text>包装上的名称</text>
+			<input
+			 value="{{productName}}"
+			 bindinput="input_name"
+			 id="input-name"
+			 placeholder="请输入包装上的名称"
+			/>
+		</label>
+		<label class="label_slug">
+			<text>俗称</text>
+			<input
+			 value="{{productSlug}}"
+			 bindinput="input_slug"
+			 id="input-slug"
+			 placeholder="请输入俗称"
+			/>
+		</label>
+		<view class="btn_wrap">
+			<button
+			 id="btn-cancel"
+			 size="mini"
+			 plain="{{true}}"
+			 bindtap="btn_cancel"
+			>取消
+			</button>
+			<button id="btn-submit" size="mini" bindtap="btn_submit">新增</button>
+		</view>
+	</form>
 </view>
+
