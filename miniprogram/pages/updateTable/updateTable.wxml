@@ -34,5 +34,5 @@
         </scroll-view>
     </view>
     <button id='btn-selectProduct' bindtap='btn_selectProduct'>选择或移除商品</button>
-    <button id='btn-addTable' bindtap='btn_addTable' type='primary'>保存表格</button>
+    <button id='btn-updateTable' bindtap='btn_updateTable' type='primary'>保存表格</button>
 </view>

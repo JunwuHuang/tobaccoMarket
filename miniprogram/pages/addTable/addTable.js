@@ -1,66 +1,95 @@
-// pages/addTable/addTable.js
 Page({
-
-	/**
-	 * 页面的初始数据
-	 */
 	data: {
-
+		tableName: '',
+		selectedProducts: []
 	},
-
-	/**
-	 * 生命周期函数--监听页面加载
-	 */
-	onLoad: function (options) {
-
+	onShow(){
+		wx.getStorage({
+			key: 'selectedProducts',
+			success:(res)=>{
+				let tempArray = JSON.parse(res.data).map(v => {
+					v.isEditing = false;
+					return v
+				})
+				this.setData({
+					selectedProducts: tempArray
+				})
+			}
+		})
 	},
-
-	/**
-	 * 生命周期函数--监听页面初次渲染完成
-	 */
-	onReady: function () {
-
+	input_caption(e){
+		e.detail.value = e.detail.value.replace(/\s+/g, "")
+		this.setData({
+			tableName: e.detail.value
+		})
+		return e.detail.value
 	},
-
-	/**
-	 * 生命周期函数--监听页面显示
-	 */
-	onShow: function () {
-
+	input_price(e){
+		e.detail.value = e.detail.value.replace(/\s+/g, "")
+		let name = e.target.dataset.name
+		let tempArray = this.data.selectedProducts
+		tempArray.forEach(v => {
+			if (v._id === e.target.dataset._id) {
+				v[name] = e.detail.value
+			}
+		})
+		this.setData({
+			selectedProducts: tempArray
+		})
+		return e.detail.value
 	},
-
-	/**
-	 * 生命周期函数--监听页面隐藏
-	 */
-	onHide: function () {
-
+	btn_edit(e){
+		let tempArray = this.data.selectedProducts
+		tempArray.forEach(v => {
+			if (v._id === e.target.dataset._id){
+				v.isEditing = !v.isEditing
+			}
+		})
+		this.setData({
+			selectedProducts: tempArray
+		})
 	},
-
-	/**
-	 * 生命周期函数--监听页面卸载
-	 */
-	onUnload: function () {
-
+	btn_selectProduct(e){
+		wx.navigateTo({
+			url: '../selectProducts/selectProducts',
+		})
 	},
-
-	/**
-	 * 页面相关事件处理函数--监听用户下拉动作
-	 */
-	onPullDownRefresh: function () {
-
-	},
-
-	/**
-	 * 页面上拉触底事件的处理函数
-	 */
-	onReachBottom: function () {
-
-	},
-
-	/**
-	 * 用户点击右上角分享
-	 */
-	onShareAppMessage: function () {
-
+	btn_addTable(){
+		if (!this.data.tableName){
+			wx.showToast({
+				title: '请输入表名',
+				icon: 'none'
+			})
+			return
+		}
+		let tempArray = this.data.selectedProducts.map(v => {
+			v.boxTradePrice = v.boxTradePrice || 0
+			v.boxRetailPrice = v.boxRetailPrice || 0
+			v.bulkTradePrice = v.bulkTradePrice || 0
+			v.bulkRetailPrice = v.bulkRetailPrice || 0
+			v.productId = v._id;
+			delete v._id;
+			delete v.isEditing;
+			return v;
+		})
+		wx.cloud.callFunction({
+			name: 'addTable',
+			data: {
+				name: this.data.tableName,
+				productList: tempArray
+			}
+		}).then(res => {
+			if (res.result.message){
+				wx.showToast({
+					title: res.result.message,
+					icon: 'none'
+				})
+			}else{
+				wx.removeStorageSync('selectedProducts')
+				wx.switchTab({
+					url: '/pages/tables/tables'
+				})
+			}
+		})
 	}
 })

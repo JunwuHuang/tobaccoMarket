@@ -1,0 +1,16 @@
+<view>
+    <view id='search-bar'>
+        <input type='text' confirm-type='search' placeholder='请输入商品俗称'></input>
+    </view>
+    <scroll-view scroll-y id='product-list'>
+        <view class='product_item' wx:for="{{productList}}" wx:key="{{item._id}}">
+            <view class='column img'>
+                <image src='{{item.img}}'></image>
+            </view>
+            <view class='column slug'>{{item.slug}}</view>
+            <view class='column btn'>
+                <button data-index='{{index}}' bindtap='btn_select' type="{{item.isSelected ? 'warn' : 'default'}}" size='mini'>{{item.isSelected ? '移除' : '选择'}}</button>
+            </view>
+        </view>
+    </scroll-view>
+</view>

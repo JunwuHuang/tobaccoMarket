@@ -1,66 +1,50 @@
 // pages/tables/tables.js
 Page({
-
-	/**
-	 * 页面的初始数据
-	 */
-	data: {
-
-	},
-
-	/**
-	 * 生命周期函数--监听页面加载
-	 */
-	onLoad: function (options) {
-
-	},
-
-	/**
-	 * 生命周期函数--监听页面初次渲染完成
-	 */
-	onReady: function () {
-
-	},
-
-	/**
-	 * 生命周期函数--监听页面显示
-	 */
-	onShow: function () {
-
-	},
-
-	/**
-	 * 生命周期函数--监听页面隐藏
-	 */
-	onHide: function () {
-
-	},
-
-	/**
-	 * 生命周期函数--监听页面卸载
-	 */
-	onUnload: function () {
-
-	},
-
-	/**
-	 * 页面相关事件处理函数--监听用户下拉动作
-	 */
-	onPullDownRefresh: function () {
-
-	},
-
-	/**
-	 * 页面上拉触底事件的处理函数
-	 */
-	onReachBottom: function () {
-
-	},
-
-	/**
-	 * 用户点击右上角分享
-	 */
-	onShareAppMessage: function () {
-
-	}
+    data: {
+        tablesList: []
+    },
+    onShow() {
+        wx.cloud.callFunction({
+            name: 'getTables'
+        }).then(res => {
+            let tempArray = res.result.data.map(v => {
+                let date = new Date(v.updateTime)
+                let updateTime = ''
+                updateTime += date.getMonth() + 1 + '/';
+                updateTime += date.getDate() + ' ';
+                updateTime += date.getHours() + ':';
+                updateTime += date.getMinutes();
+                v.updateTime = updateTime;
+                return v;
+            })
+            this.setData({
+                tablesList: tempArray
+            })
+        })
+    },
+    btn_addTable() {
+        wx.navigateTo({
+            url: '../addTable/addTable'
+        })
+    },
+    btn_updateTable(e) {
+        wx.navigateTo({
+            url: '../updateTable/updateTable?_id=' + e.target.dataset._id,
+        })
+    },
+    btn_deleteTable(e) {
+        wx.cloud.callFunction({
+            name: 'deleteTable',
+            data: {
+                _id: e.target.dataset._id
+            }
+        }).then(res => {
+            let tempArray = this.data.tablesList.filter(v => {
+                return v._id !== e.target.dataset._id
+            })
+            this.setData({
+                tablesList: tempArray
+            })
+        })
+    },
 })

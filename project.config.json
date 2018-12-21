@@ -28,14 +28,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 3,
 			"list": [
-				{
-					"id": -1,
-					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide",
-					"query": ""
-				},
 				{
 					"id": -1,
 					"name": "tables",
@@ -50,9 +44,15 @@
 				},
 				{
 					"id": -1,
-					"name": "addProduct",
-					"pathName": "pages/addProduct/addProduct",
+					"name": "addTable",
+					"pathName": "pages/addTable/addTable",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "updateTable",
+					"pathName": "pages/updateTable/updateTable",
+					"query": "_id=XBy-N5T75u22qaVX"
 				}
 			]
 		}

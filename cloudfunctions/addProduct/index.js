@@ -21,6 +21,7 @@ exports.main = async (event, context) => {
 					img: event.img,
 					name: event.name,
 					slug: event.slug,
+					createTime: new Date(),
 					updateTime: new Date(),
 					isDeleted: false
 				}

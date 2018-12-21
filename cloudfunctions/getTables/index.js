@@ -6,11 +6,10 @@ cloud.init()
 const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
-	return await db.collection('tobaccoMarket').where({
+	return await db.collection('marketTable').where({
 		isDeleted: false
 	}).field({
-		img: true,
 		name: true,
-		slug: true
+		updateTime: true
 	}).get()
 }
