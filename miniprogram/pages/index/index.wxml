@@ -1,27 +1,25 @@
 <view>
-    <view id='btn-addTable'>
-        <button>新的行情表</button>
+  <view id='btn-addTable'>
+    <button bindtap='btn_addTable'>新的行情表</button>
+  </view>
+  <view id='main-table'>
+    <view class='caption'>今日行情</view>
+    <view class='tr'>
+      <view class='th'>俗称</view>
+      <view class='th'>批发(条)</view>
+      <view class='th'>零售(条)</view>
+      <view class='th'>批发(包)</view>
+      <view class='th'>零售(包)</view>
     </view>
-    <view id='main-table'>
-        <view class='caption'>今日行情</view>
-        <view class='tr'>
-            <view class='th'>俗称</view>
-            <view class='th'>批发(条)</view>
-            <view class='th'>零售(条)</view>
-            <view class='th'>批发(包)</view>
-            <view class='th'>零售(包)</view>
-        </view>
-        <view class='tr'>
-            <view class='td'>328软中</view>
-            <view class='td'>670</view>
-            <view class='td'>680</view>
-            <view class='td'>68</view>
-            <view class='td'>70</view>
-        </view>
+    <view class='tr' wx:for="{{tableInfo.productList}}" wx:key="{{item.productId}}">
+      <view class='td'>{{item.slug}}</view>
+      <view class='td'>{{item.boxTradePrice}}</view>
+      <view class='td'>{{item.boxRetailPrice}}</view>
+      <view class='td'>{{item.bulkTradePrice}}</view>
+      <view class='td'>{{item.bulkRetailPrice}}</view>
     </view>
-    <view id='btn-putTable'>
-        <navigator>
-            <button>修改今日行情</button>
-        </navigator>
-    </view>
+  </view>
+  <view id='btn-putTable'>
+    <button bindtap='btn_updateTable'>修改今日行情</button>
+  </view>
 </view>

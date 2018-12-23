@@ -4,6 +4,8 @@
             <text>行情表名</text>
             <input bindinput='input_caption' type='text' placeholder='请输入行情表名'></input>
         </label>
+    <view>提示:可将表格左右滑动以显示更多信息</view>
+
         <scroll-view scroll-x>
             <view class='tr'>
                 <view class='th'>俗称</view>

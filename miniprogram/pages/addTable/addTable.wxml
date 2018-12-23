@@ -1,38 +1,39 @@
 <view>
-    <view id='main-table'>
-        <label class='.caption'>
-            <text>行情表名</text>
-            <input bindinput='input_caption' type='text' placeholder='请输入行情表名'></input>
-        </label>
-        <scroll-view scroll-x>
-            <view class='tr'>
-                <view class='th'>俗称</view>
-                <view class='th'>批发(条)</view>
-                <view class='th'>零售(条)</view>
-                <view class='th'>批发(包)</view>
-                <view class='th'>零售(包)</view>
-                <view class='th'>操作</view>
-            </view>
-            <view class='tr' wx:for="{{selectedProducts}}" wx:key="{{item._id}}">
-                <view class='td'>{{item.slug}}</view>
-                <view class='td'>
-                    <input type='digit' bindinput='input_price' data-_id='{{item._id}}' data-name='boxTradePrice' placeholder='价格' value='{{item.boxTradePrice}}' disabled='{{!item.isEditing}}'></input>
-                </view>
-                <view class='td'>
-                    <input type='digit' bindinput='input_price' data-_id='{{item._id}}' data-name='boxRetailPrice' placeholder='价格' value='{{item.boxRetailPrice}}' disabled='{{!item.isEditing}}'></input>
-                </view>
-                <view class='td'>
-                    <input type='digit' bindinput='input_price' data-_id='{{item._id}}' data-name='bulkTradePrice' placeholder='价格' value='{{item.bulkTradePrice}}' disabled='{{!item.isEditing}}'></input>
-                </view>
-                <view class='td'>
-                    <input type='digit' bindinput='input_price' data-_id='{{item._id}}' data-name='bulkRetailPrice' placeholder='价格' value='{{item.bulkRetailPrice}}' disabled='{{!item.isEditing}}'></input>
-                </view>
-                <view class='td operate'>
-                    <button data-_id='{{item._id}}' bindtap='btn_edit' type="{{item.isEditing ? 'default':'primary'}}" size='mini'>{{item.isEditing ? '完成':'编辑'}}</button>
-                </view>
-            </view>
-        </scroll-view>
-    </view>
-    <button id='btn-selectProduct' bindtap='btn_selectProduct'>选择或移除商品</button>
-    <button id='btn-addTable' bindtap='btn_addTable' type='primary'>保存表格</button>
+  <view id='main-table'>
+    <label class='.caption'>
+      <text>行情表名</text>
+      <input bindinput='input_caption' type='text' placeholder='请输入行情表名'></input>
+    </label>
+    <view>提示:可将表格左右滑动以显示更多信息</view>
+    <scroll-view scroll-x>
+      <view class='tr'>
+        <view class='th'>俗称</view>
+        <view class='th'>批发(条)</view>
+        <view class='th'>零售(条)</view>
+        <view class='th'>批发(包)</view>
+        <view class='th'>零售(包)</view>
+        <view class='th'>操作</view>
+      </view>
+      <view class='tr' wx:for="{{selectedProducts}}" wx:key="{{item._id}}">
+        <view class='td'>{{item.slug}}</view>
+        <view class='td'>
+          <input type='digit' bindinput='input_price' data-_id='{{item._id}}' data-name='boxTradePrice' placeholder='价格' value='{{item.boxTradePrice}}' disabled='{{!item.isEditing}}'></input>
+        </view>
+        <view class='td'>
+          <input type='digit' bindinput='input_price' data-_id='{{item._id}}' data-name='boxRetailPrice' placeholder='价格' value='{{item.boxRetailPrice}}' disabled='{{!item.isEditing}}'></input>
+        </view>
+        <view class='td'>
+          <input type='digit' bindinput='input_price' data-_id='{{item._id}}' data-name='bulkTradePrice' placeholder='价格' value='{{item.bulkTradePrice}}' disabled='{{!item.isEditing}}'></input>
+        </view>
+        <view class='td'>
+          <input type='digit' bindinput='input_price' data-_id='{{item._id}}' data-name='bulkRetailPrice' placeholder='价格' value='{{item.bulkRetailPrice}}' disabled='{{!item.isEditing}}'></input>
+        </view>
+        <view class='td operate'>
+          <button data-_id='{{item._id}}' bindtap='btn_edit' type="{{item.isEditing ? 'default':'primary'}}" size='mini'>{{item.isEditing ? '完成':'编辑'}}</button>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <button id='btn-selectProduct' bindtap='btn_selectProduct'>选择或移除商品</button>
+  <button id='btn-addTable' bindtap='btn_addTable' type='primary'>保存表格</button>
 </view>
